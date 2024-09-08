@@ -30,14 +30,14 @@ function Profile() {
       formData.append('status',data.status); 
       formData.append('email',email);
       console.log(formData.get('profileImage'));
-      const res=await axios.post('http://localhost:3000/api/v1/user/edituserdata',formData,{
+      const res=await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/user/edituserdata',formData,{
         headers:{
         "Content-Type": "multipart/form-data"
         }
       });
       console.log(res.data);
-      sessionStorage.setItem('userInfo',JSON.stringify({...res.data,profileImage:'http://localhost:3000/'+res.data.profileImage}))
-      dispatch(authLogin({...res.data,profileImage:'http://localhost:3000/'+res.data.profileImage}))
+      sessionStorage.setItem('userInfo',JSON.stringify({...res.data,profileImage:'https://shark-app-ahkas.ondigitalocean.app/'+res.data.profileImage}))
+      dispatch(authLogin({...res.data,profileImage:'https://shark-app-ahkas.ondigitalocean.app/'+res.data.profileImage}))
       setEditProfile(true)
     }
 catch(err){
@@ -70,7 +70,7 @@ catch(err){
 
     <button onClick={async ()=>{
         auth.signOut()
-      const res=await axios.post('http://localhost:3000/api/v1/user/logout',{email:email},{
+      const res=await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/user/logout',{email:email},{
         withCredentials: true,  // Ensures that cookies, including session cookies, are sent with the request
         headers: {
             'Content-Type': 'application/json'

@@ -28,7 +28,7 @@ function Messages() {
       },[socket])
     useEffect(() => {
         const fetchContacts = async () => {
-            const response = await axios.get("http://localhost:3000/api/v1/messages/getcontacts", {
+            const response = await axios.get("https://shark-app-ahkas.ondigitalocean.app/api/v1/messages/getcontacts", {
                 withCredentials: true,
                 headers: {
                     "Content-Type": "application/json",
@@ -41,7 +41,7 @@ function Messages() {
     async function fetchMessages(){
         console.log(contact);
         setCurrentContact(contact.email);
-        const response = await axios.post("http://localhost:3000/api/v1/messages/getmessages", { user:email,reciever:contact.email }, {
+        const response = await axios.post("https://shark-app-ahkas.ondigitalocean.app/api/v1/messages/getmessages", { user:email,reciever:contact.email }, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
@@ -60,7 +60,7 @@ function Messages() {
         console.log(data.message, email);
         const update=[...currentMessage,{message:data.message, email:email}]
         setCurrentMessage(update);
-        const response= await axios.post("http://localhost:3000/api/v1/messages/sendmessage",{author:email, message:data.message, messageId:messages.messageId, friend:contact.email},{withCredentials:true,headers:{"Content-Type":"application/json"}});
+        const response= await axios.post("https://shark-app-ahkas.ondigitalocean.app/api/v1/messages/sendmessage",{author:email, message:data.message, messageId:messages.messageId, friend:contact.email},{withCredentials:true,headers:{"Content-Type":"application/json"}});
         console.log(response.data);
         setDynamicMessage('');
     }

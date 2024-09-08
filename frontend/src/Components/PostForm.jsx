@@ -25,7 +25,7 @@ function PostForm({className}) {
     profileImage = profileImage ? profileImage : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
     const name = useSelector(state => state.auth.userData.email);
     const handleEditorChange = async(data) => {
-       const res = await axios.post('http://localhost:3000/api/v1/posts/newpost',{author:JSON.parse(sessionStorage.getItem('userInfo')).email,comments:[],...data});
+       const res = await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/posts/newpost',{author:JSON.parse(sessionStorage.getItem('userInfo')).email,comments:[],...data});
        console.log(res.data);
       dispatch(newUpload({author:name,profileImage:profileImage,...data}));
         dispatch(freshFeed({author:name,profileImage:profileImage,...data}));

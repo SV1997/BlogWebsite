@@ -22,7 +22,7 @@ function Signup() {
             console.log(res.user);
             const data= {name:res.user.displayName,email:res.user.email, profileImage:res.user.photoURL}
             sessionStorage.setItem('userInfo',JSON.stringify(data))
-            const makeuser=await axios.post('http://localhost:3000/api/v1/user/userdata',data);
+            const makeuser=await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/user/userdata',data);
             console.log(makeuser);
             dispatch(authLogin(data))
             navigate('/post')
@@ -38,7 +38,7 @@ function Signup() {
         try {
            const res= await createUserWithEmailAndPassword(auth,formData.email,formData.password)
            console.log(res);
-            const makeuser=await axios.post('http://localhost:3000/api/v1/user/userdata',formData);
+            const makeuser=await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/user/userdata',formData);
             console.log(res.data);
            console.log(res); 
            navigate('/login')

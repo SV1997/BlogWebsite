@@ -27,7 +27,7 @@ function Login() {
             console.log(res.user,res._tokenResponse.isNewUser);
             if(res._tokenResponse.isNewUser){
                 // isNewUser=true
-                response=await axios.post('http://localhost:3000/api/v1/user/userdata',{name:res.user.displayName,email:res.user.email, profileImage:res.user.photoURL},
+                response=await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/user/userdata',{name:res.user.displayName,email:res.user.email, profileImage:res.user.photoURL},
                     {withCredentials: true,  // Ensures that cookies, including session cookies, are sent with the request
                         headers: {
                             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ function Login() {
                 console.log('new user',response.data);
             }
             else{
-                response=await axios.post(`http://localhost:3000/api/v1/user/getuserdata`,{name:res.user.displayName,email:res.user.email,partial:false},{
+                response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/getuserdata`,{name:res.user.displayName,email:res.user.email,partial:false},{
                     withCredentials: true,  // Ensures that cookies, including session cookies, are sent with the request
                     headers: {
                         'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ function Login() {
             }
             else{
             console.log(response.data);
-            const data= {name:(response.data.name?response.data.name:res.user.displayName),email:(response.data.email?response.data.email:res.user.email), profileImage:(response.data.profileImage?'http://localhost:3000/'+response.data.profileImage:res.user.photoURL), mobileNumber:response.data.mobileNumber, status:response.data.status}
+            const data= {name:(response.data.name?response.data.name:res.user.displayName),email:(response.data.email?response.data.email:res.user.email), profileImage:(response.data.profileImage?'https://shark-app-ahkas.ondigitalocean.app/'+response.data.profileImage:res.user.photoURL), mobileNumber:response.data.mobileNumber, status:response.data.status}
             console.log(data)
             sessionStorage.setItem('userInfo',JSON.stringify(data))
             dispatch(authLogin(data))
@@ -66,7 +66,7 @@ function Login() {
     const login=async (data)=>{
         try{
             const res= await signInWithEmailAndPassword(auth,data.email,data.password);
-            const response=await axios.post(`http://localhost:3000/api/v1/user/getuserdata`,{email:res.user.email});
+            const response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/getuserdata`,{email:res.user.email});
             console.log(response.data);
             sessionStorage.setItem('userInfo',JSON.stringify(data))
             dispatch(authLogin(data))
