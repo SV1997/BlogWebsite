@@ -34,7 +34,7 @@ app.use(cookieParser(secretKey));
 
 // Middleware Setup
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://blog-website-woad-one.vercel.app/',
     credentials: true // Important to allow cookies to be sent
 })); 
 app.use(express.urlencoded({ extended: true }));
