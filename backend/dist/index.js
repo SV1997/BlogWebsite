@@ -28,9 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const express_session_1 = __importDefault(require("express-session"));
-const connect_redis_1 = __importDefault(require("connect-redis"));
-const client_1 = __importDefault(require("./model/client"));
+// import client from './model/client';
 const multer_1 = __importDefault(require("multer"));
 const user_1 = require("./routes/user");
 const posts_1 = require("./routes/posts");
@@ -40,19 +38,23 @@ const http_1 = __importDefault(require("http"));
 const socket_1 = __importDefault(require("./socket"));
 const crypto = __importStar(require("crypto"));
 const messages_1 = require("./routes/messages");
+const dotenv = __importStar(require("dotenv"));
+dotenv.config();
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
 const secretKey = crypto.randomBytes(16).toString('hex');
 app.use((0, cookie_parser_1.default)(secretKey));
 // Session Configuration
-const redisstoreInstance = new connect_redis_1.default({ client: client_1.default });
-const sessionMiddleware = (0, express_session_1.default)({
-    secret: 'my secret',
-    resave: false,
-    saveUninitialized: true,
-    store: redisstoreInstance
-});
-app.use(sessionMiddleware);
+// const redisstoreInstance = new RedisStore({ client: client });
+// const sessionMiddleware= session({
+//     secret: 'my secret',
+//     resave: false,
+//     saveUninitialized: true,
+//     store: redisstoreInstance
+//   })
+//   app.use(
+//     sessionMiddleware,
+//   );
 // Middleware Setup
 app.use((0, cors_1.default)({
     origin: 'http://localhost:5173',
@@ -80,10 +82,10 @@ app.use((0, multer_1.default)({
         }
     }
 }).single('profileImage'));
-app.use((req, res, next) => {
-    req.user = req.session.user;
-    next();
-});
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//     req.user = req.session.user as { email: string; name: string; profileImage: string; mobileNumber: string; status: string; };
+//     next()
+// });
 // Routers
 app.use('/api/v1/user', user_1.userRouter);
 app.use('/api/v1/posts', posts_1.postRouter);
@@ -93,7 +95,7 @@ io.on('connection', (socket) => {
     console.log('Client connected');
     socket.emit('socketId', socket.id);
 });
-server.listen(3000, () => {
+server.listen(process.env.PORT, () => {
     console.log('Server is running on port 3000');
 });
 //# sourceMappingURL=index.js.map

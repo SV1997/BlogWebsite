@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient, Post,user, comment} from '@prisma/client'; // Import the userUpdateInput type
-import { profile } from 'console';
 import serverio from '../socket'
-import { connect } from 'http2';
 
 const prisma = new PrismaClient();
 interface authorData extends Post{

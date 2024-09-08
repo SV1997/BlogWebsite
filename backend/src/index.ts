@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import RedisStore from 'connect-redis';
-import client from './model/client';
+// import client from './model/client';
 import multer from 'multer';
 import { userRouter } from './routes/user';
 import { postRouter } from './routes/posts';
@@ -14,22 +14,23 @@ import http from 'http';
 import serverio from './socket'
 import * as crypto from 'crypto';
 import { messageRouter } from './routes/messages';
-import cookie from 'cookie'
+import * as dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 const server=http.createServer(app)
 const secretKey = crypto.randomBytes(16).toString('hex');
 app.use(cookieParser(secretKey));
 // Session Configuration
-const redisstoreInstance = new RedisStore({ client: client });
-const sessionMiddleware= session({
-    secret: 'my secret',
-    resave: false,
-    saveUninitialized: true,
-    store: redisstoreInstance
-  })
-  app.use(
-    sessionMiddleware,
-  );
+// const redisstoreInstance = new RedisStore({ client: client });
+// const sessionMiddleware= session({
+//     secret: 'my secret',
+//     resave: false,
+//     saveUninitialized: true,
+//     store: redisstoreInstance
+//   })
+//   app.use(
+//     sessionMiddleware,
+//   );
 
 // Middleware Setup
 app.use(cors({
@@ -58,10 +59,10 @@ app.use(multer({
         }
     }
 }).single('profileImage'));
-app.use((req: Request, res: Response, next: NextFunction) => {
-    req.user = req.session.user as { email: string; name: string; profileImage: string; mobileNumber: string; status: string; };
-    next()
-});
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//     req.user = req.session.user as { email: string; name: string; profileImage: string; mobileNumber: string; status: string; };
+//     next()
+// });
 // Routers
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/posts', postRouter);
@@ -73,6 +74,6 @@ io.on('connection', (socket) => {
 
 })
 
-server.listen(3000, () => {
+server.listen(process.env.PORT, () => {
     console.log('Server is running on port 3000');
 });

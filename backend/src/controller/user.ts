@@ -2,12 +2,12 @@ import { Request, Response } from 'express';
 import { PrismaClient, user} from '@prisma/client'; // Import the userUpdateInput type
 import { get } from 'http';
 // import { profile } from '//console';
-import client from '../model/client';
+// import client from '../model/client';
 import serverio from '../socket'
 import * as crypto from 'crypto';
-import cookie from 'cookie'
-import cookieParser from 'cookie-parser';
-import { log } from 'console';
+// import cookie from 'cookie'
+// import cookieParser from 'cookie-parser';
+// import { log } from 'console';
 const secretKey = crypto.randomBytes(16).toString('hex');
 const prisma = new PrismaClient();
 const setUserData = async  (req: Request, res: Response) => {
@@ -356,9 +356,9 @@ try {
 
 const logout= async (req: Request, res: Response) => {
 try {
-    req.session.destroy((err) => {
-        console.log(err)
-    })
+    // req.session.destroy((err) => {
+    //     console.log(err)
+    // })
     res.clearCookie('email');
     res.status(200).json({message:'Logged out successfully'})
 } catch (error) {
@@ -371,12 +371,12 @@ const postWindowLeave= async (req: Request, res: Response) => {
         console.log("unload", req.cookies.email);
         
 const socketId: string= req.body.socketId;
-const deletedSocket= await prisma.socket.delete({
-    where:{
-        userId:req.cookies.email
-    }
-})
-console.log(deletedSocket);
+// const deletedSocket= await prisma.socket.delete({
+//     where:{
+//         userId:req.cookies.email
+//     }
+// })
+// console.log(deletedSocket);
 
     }
     catch(error){
