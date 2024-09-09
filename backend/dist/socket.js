@@ -6,7 +6,7 @@ const server = {
     init: (server) => {
         io = new socket_io_1.Server(server, {
             cors: {
-                origin: "*",
+                origin: 'https://blog-website-seven-ecru.vercel.app',
                 methods: ["GET", "POST"],
                 credentials: true
             }
