@@ -265,7 +265,7 @@ const getComments = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             console.log(authorMap);
             const commentsMap = postComments.map((comment) => {
                 const author = authorMap[comment.authorId];
-                return Object.assign(Object.assign({}, comment), { profile: 'http://localhost:3000/' + author.profileImage, author: author.name, email: author.email });
+                return Object.assign(Object.assign({}, comment), { profile: 'https://shark-app-ahkas.ondigitalocean.app/' + author.profileImage, author: author.name, email: author.email });
             });
             return res.status(200).json(commentsMap);
         }

@@ -57,7 +57,7 @@ app.use((0, cookie_parser_1.default)(secretKey));
 //   );
 // Middleware Setup
 app.use((0, cors_1.default)({
-    origin: 'https://blog-website-woad-one.vercel.app/',
+    origin: 'https://blog-website-woad-one.vercel.app',
     credentials: true // Important to allow cookies to be sent
 }));
 app.use(express_1.default.urlencoded({ extended: true }));
