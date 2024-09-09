@@ -8,7 +8,7 @@ const server = {
             cors: {
                 origin: 'https://blog-website-seven-ecru.vercel.app',
                 // methods:["GET","POST"],
-                allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token"],
+                allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token", "Access-Control-Allow-Origin"],
                 credentials: true
             }
         });
