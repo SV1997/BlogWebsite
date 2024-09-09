@@ -11,7 +11,7 @@ function SearchBar({searchFunction}) {
             const timeOut=setTimeout(async()=>{
                 let response;
                 try {
-                 response=await axios.get(`http://localhost:3000/api/v1/user/search/${search}`)
+                 response=await axios.get(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/search/${search}`)
                 } catch (error) {
                     console.log(error);
                     response=

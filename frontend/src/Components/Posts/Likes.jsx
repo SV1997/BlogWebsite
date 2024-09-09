@@ -12,7 +12,7 @@ function Likes({post,dblikes ,children}) {
     console.log(post);
     
     dispatch(addLikes({ id:post.id, likes:(post.likes+1)  }));
-    const response= await axios.post('http://localhost:3000/api/v1/posts/addlikes', {id:post.id, liker:user.email});
+    const response= await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/posts/addlikes', {id:post.id, liker:user.email});
     console.log(response.data.likes);
     if(response.data.likes!==undefined){
         setLikes(likes+1)

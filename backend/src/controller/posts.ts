@@ -285,7 +285,7 @@ const getComments= async (req: Request, res: Response) => {
         
         const commentsMap:commentsData[]=postComments.map((comment:comment)=>{
             const author:Author= authorMap[comment.authorId];
-            return{...comment, profile: 'http://localhost:3000/'+author.profileImage, author: author.name, email: author.email};
+            return{...comment, profile: 'https://shark-app-ahkas.ondigitalocean.app/'+author.profileImage, author: author.name, email: author.email};
         })
         return res.status(200).json(commentsMap);
     }

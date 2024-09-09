@@ -12,7 +12,7 @@ function Comments({post, children}) {
     console.log(author);
     useEffect(()=>{
       async function getComments(){
-        const commentsData= await axios.post(`http://localhost:3000/api/v1/posts/getcomments`,{postId:post.id}); 
+        const commentsData= await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/posts/getcomments`,{postId:post.id}); 
         console.log(commentsData.data);
         setComments(commentsData.data);
       }
@@ -23,7 +23,7 @@ function Comments({post, children}) {
         setComment('');
         const date=String(getDate());
         setComments([...comments, {content:data.comment, author:author.name, profile:author.profileImage, published:date}]);
-        const commentPost= await axios.post('http://localhost:3000/api/v1/posts/addcomments',{postId:post.id, comment:data.comment,authorId:author.email, published:date});
+        const commentPost= await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/posts/addcomments',{postId:post.id, comment:data.comment,authorId:author.email, published:date});
         console.log(commentPost);   
     }
   return (
@@ -44,7 +44,7 @@ function Comments({post, children}) {
                 return (
                   <div className='flex flex-row' key={comment.id}>
                     <div className='w-1/6'>
-                      <img src={comment.profile!=="http://localhost:3000/null"?comment.profile: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'} alt="profile image" className='w-4/6 rounded-full' />
+                      <img src={comment.profile!=="https://shark-app-ahkas.ondigitalocean.app/null"?comment.profile: 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'} alt="profile image" className='w-4/6 rounded-full' />
                     </div>
                     <div className='flex flex-col'>
                       <p className='text-xs'>{comment.author} <span>{comment.published}</span></p>
