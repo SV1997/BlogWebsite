@@ -6,7 +6,7 @@ const server={
 io = new Server(server,{
   cors:{
     origin:'https://blog-website-seven-ecru.vercel.app',
-    methods:["GET","POST"],
+    // methods:["GET","POST"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token"],
     credentials:true
   }

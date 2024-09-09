@@ -7,7 +7,8 @@ const server = {
         io = new socket_io_1.Server(server, {
             cors: {
                 origin: 'https://blog-website-seven-ecru.vercel.app',
-                methods: ["GET", "POST"],
+                // methods:["GET","POST"],
+                allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token"],
                 credentials: true
             }
         });
