@@ -59,7 +59,7 @@ function setContacts(req, res) {
                 contacts: true
             }
         });
-        const isPresent = user === null || user === void 0 ? void 0 : user.contacts.some(contact => {
+        const isPresent = user === null || user === void 0 ? void 0 : user.contacts.some((contact) => {
             return (contact.userId === email) || (contact.friendId === email);
         });
         //console.log(isPresent,"isPresent");
