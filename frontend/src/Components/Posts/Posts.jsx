@@ -22,7 +22,7 @@ const PostComponent = () => {
                 if(post)
                 {return<div><div key={post.id} className="max-w-xl bg-white rounded-lg shadow-md overflow-hidden mb-4 ">
                     <div className="flex items-center p-4 hover:cursor-pointer" onClick={()=>{navigate(`/profiles`,{state:{email:post.authorId}})}}>
-                        <img src={("https://shark-app-ahkas.ondigitalocean.app/"+post.profile)!=="https://shark-app-ahkas.ondigitalocean.app/null"?"https://shark-app-ahkas.ondigitalocean.app/"+post.profile:'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
+                        <img src={("https://blogwebsite-1-wxmh.onrender.com/"+post.profile)!=="https://blogwebsite-1-wxmh.onrender.com/null"?"https://blogwebsite-1-wxmh.onrender.com/"+post.profile:'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'} alt="Profile" className="w-10 h-10 rounded-full mr-4" />
                         <div>
                             <h2 className="text-xl font-semibold">{post.author}</h2>
                             {

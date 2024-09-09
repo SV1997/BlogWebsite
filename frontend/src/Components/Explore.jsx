@@ -8,7 +8,7 @@ const Explore = () => {
     const dispatch=useDispatch();
     useEffect(()=>{
         async  function  getAllPosts(){
-            const post= await axios.get('https://shark-app-ahkas.ondigitalocean.app/api/v1/posts/getallposts');
+            const post= await axios.get('https://blogwebsite-1-wxmh.onrender.com/api/v1/posts/getallposts');
             console.log(posts.data);
             setPosts(post.data);
             post.data.map((post1) =>{

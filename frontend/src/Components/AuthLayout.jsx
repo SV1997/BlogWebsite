@@ -29,7 +29,7 @@ function AuthLayout({children, authentication = true}) {
             }
             console.log(userInfo);
             if(!(userInfo&&userInfo.email)&&userData){
-                const response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/getuserdata`,{email:userData.email},
+                const response=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/user/getuserdata`,{email:userData.email},
                     {
                         withCredentials: true,  // Ensures that cookies, including session cookies, are sent with the request
                         headers: {
@@ -38,7 +38,7 @@ function AuthLayout({children, authentication = true}) {
                 );
                 console.log("getdata active ")
                 console.log(response.data);
-                const data= {name:(userInfo.name?response.data.name:userData.displayName),email:(userInfo.email?response.data.email:userData.email), profileImage:((response.data&&response.data.profileImage)?'https://shark-app-ahkas.ondigitalocean.app/'+response.data.profileImage:userData.photoURL), mobileNumber:response.data?response.data.mobileNumber:'', status:response.data?response.data.status:''}
+                const data= {name:(userInfo.name?response.data.name:userData.displayName),email:(userInfo.email?response.data.email:userData.email), profileImage:((response.data&&response.data.profileImage)?'https://blogwebsite-1-wxmh.onrender.com/'+response.data.profileImage:userData.photoURL), mobileNumber:response.data?response.data.mobileNumber:'', status:response.data?response.data.status:''}
                 console.log(data)
                 sessionStorage.setItem('userInfo',JSON.stringify(data))
                 dispatch(authLogin(data))

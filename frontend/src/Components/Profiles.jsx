@@ -24,7 +24,7 @@ function Profiles() {
     const sendRequest=async()=>{
         console.log("Send Request");
         
-        const response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/sendrequest`,{email:email, senderEmail:senderEmail, socketId:sessionStorage.getItem('socketId')},
+        const response=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/user/sendrequest`,{email:email, senderEmail:senderEmail, socketId:sessionStorage.getItem('socketId')},
             {
                 withCredentials: true,
                 headers: {
@@ -36,7 +36,7 @@ function Profiles() {
     }
     useEffect(() => { 
        async function getUserData(){
-            const response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/getuserdata`,{email:email,partial:true},            {
+            const response=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/user/getuserdata`,{email:email,partial:true},            {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ function Profiles() {
         getUserData();
     },[email,location])
     const confirmRequest=async()=>{
-        const response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/confirmrequest`,{email:email},
+        const response=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/user/confirmrequest`,{email:email},
             {
                 withCredentials: true,
                 headers: {
@@ -80,7 +80,7 @@ function Profiles() {
         console.log(response.data);
     }
     const withdrawRequest=async()=>{
-        const response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/withdrawrequest`,{email:email},
+        const response=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/user/withdrawrequest`,{email:email},
             {
                 withCredentials: true,
                 headers: {
@@ -91,7 +91,7 @@ function Profiles() {
         console.log(response.data);
     }
     const unfollow=async()=>{
-        const response=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/user/unfollow`,{email:email},
+        const response=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/user/unfollow`,{email:email},
             {
                 withCredentials: true,
                 headers: {
@@ -102,7 +102,7 @@ function Profiles() {
         console.log(response.data);
     }
     const message=async()=>{
-        const chatCreated=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/messages/createChatId`,{email:email},
+        const chatCreated=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/messages/createChatId`,{email:email},
             {
                 withCredentials: true,
                 headers: {
@@ -110,7 +110,7 @@ function Profiles() {
                 }
             }
         );
-        const createContacts=await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/messages/setcontacts`,{email:email, name:userData.name},{
+        const createContacts=await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/messages/setcontacts`,{email:email, name:userData.name},{
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
@@ -121,7 +121,7 @@ function Profiles() {
     console.log(createContacts.data);  }
   return (
 <div className="flex flex-col items-center p-4 bg-white shadow rounded-lg">
-    <img className="rounded-full w-32 border-4 border-gray-300" src={'https://shark-app-ahkas.ondigitalocean.app/' + userData.profileImage} alt="Profile" />
+    <img className="rounded-full w-32 border-4 border-gray-300" src={'https://blogwebsite-1-wxmh.onrender.com/' + userData.profileImage} alt="Profile" />
     <p className="mt-4 text-sm text-gray-500">Name</p>
     <p className="text-lg font-semibold">{userData.name}</p>
     <p className="mt-4 text-sm text-gray-500">Status</p>

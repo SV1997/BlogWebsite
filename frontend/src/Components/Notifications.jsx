@@ -8,7 +8,7 @@ function Notifications() {
   const navigate=useNavigate()
   useEffect(() => {
 async function getfollowers(){
-  const res= await axios.post('https://shark-app-ahkas.ondigitalocean.app/api/v1/user/followerequests',{},{
+  const res= await axios.post('https://blogwebsite-1-wxmh.onrender.com/api/v1/user/followerequests',{},{
     withCredentials: true,  // Ensures that cookies, including session cookies, are sent with the request
     headers: {
         'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ getfollowers()
 <div onClick={()=>{
       navigate(`/profiles`,{state:{email:request.email}})
     }} className='border-2 border-gray-300 rounded-lg shadow-lg overflow-hidden flex items-center p-4 cursor-pointer'>
-  <img className='rounded-full w-16 h-16 flex-shrink-0 mr-4 object-cover' src={request.profileImage ? request.profileImage : 'https://shark-app-ahkas.ondigitalocean.app/uploads/nouserimage.png'} alt="Profile" />
+  <img className='rounded-full w-16 h-16 flex-shrink-0 mr-4 object-cover' src={request.profileImage ? request.profileImage : 'https://blogwebsite-1-wxmh.onrender.com/uploads/nouserimage.png'} alt="Profile" />
   <div>
     <p className='text-lg font-semibold'>{request.name}</p>
     <p className='text-sm text-gray-600'>{request.email}</p>

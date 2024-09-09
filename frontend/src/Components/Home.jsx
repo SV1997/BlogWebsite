@@ -12,7 +12,7 @@ function Home() {
   useEffect(()=>{
     let response;
     async function getPosts(){
-      response= await axios.post(`https://shark-app-ahkas.ondigitalocean.app/api/v1/posts/getposts`,{email:email, socketId:sessionStorage.getItem('socketId')},{
+      response= await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/posts/getposts`,{email:email, socketId:sessionStorage.getItem('socketId')},{
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
