@@ -43,7 +43,7 @@ include:{
   contacts:true
 }
 })
-const isPresent=user?.contacts.some(contact=>{//console.log(contact.userId,contact.friendId,(contact.userId===email)||(contact.friendId===email),"contact.userId");
+const isPresent=user?.contacts.some((contact:contacts)=>{//console.log(contact.userId,contact.friendId,(contact.userId===email)||(contact.friendId===email),"contact.userId");
   return (contact.userId===email)||(contact.friendId===email)});
 //console.log(isPresent,"isPresent");
 
