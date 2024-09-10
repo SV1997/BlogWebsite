@@ -360,6 +360,7 @@ try {
     //     console.log(err)
     // })
     res.clearCookie('email');
+    res.clearCookie('socketId');
     res.status(200).json({message:'Logged out successfully'})
 } catch (error) {
     console.log(error);
