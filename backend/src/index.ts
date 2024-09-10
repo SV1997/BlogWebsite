@@ -35,7 +35,7 @@ app.use(cookieParser(secretKey));
 // Middleware Setup
 app.use(cors({
     origin: 'https://blog-website-seven-ecru.vercel.app',
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token", "Set-Cookie","Cookie","Origin"],
+    // allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token", "Set-Cookie","Cookie","Origin"],
     credentials: true // Important to allow cookies to be sent
 })); 
 app.use(express.urlencoded({ extended: true }));
