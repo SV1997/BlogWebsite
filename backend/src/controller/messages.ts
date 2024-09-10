@@ -107,7 +107,7 @@ async function sendContacts(req:Request,res:Response){
   const encoder = new TextEncoder();
   const data = encoder.encode(email);
   const hash= "message"+email
-  console.log(hash,"hash 110");
+  console.log(hash, socketid,"hash 110");
   
   const user=await client.user.findUnique({
     where:{
