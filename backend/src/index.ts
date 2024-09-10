@@ -34,9 +34,10 @@ app.use(cookieParser(secretKey));
 
 // Middleware Setup
 app.use(cors({
-    origin: 'https://blog-website-seven-ecru.vercel.app',
-    // allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token", "Set-Cookie","Cookie","Origin"],
-    credentials: true // Important to allow cookies to be sent
+    origin: 'https://blog-website-seven-ecru.vercel.app', // This should be the URL of your frontend
+    credentials: true, // To allow cookies to be shared between backend and frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowable methods
+    allowedHeaders: ['Content-Type', 'Authorization'] 
 })); 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

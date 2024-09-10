@@ -41,14 +41,20 @@ function Messages() {
     async function fetchMessages(){
         console.log(contact);
         setCurrentContact(contact.email);
-        const response = await axios.post("https://blogwebsite-1-wxmh.onrender.com/api/v1/messages/getmessages", { user:email,reciever:contact.email }, {
+        try {const response = await axios.post("https://blogwebsite-1-wxmh.onrender.com/api/v1/messages/getmessages", { user:email,reciever:contact.email }, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
             },
-        });
+        })
         setMessages(response.data);
         console.log(response.data);
+    }
+        catch (error){
+            console.log(error);
+            
+        }
+
                 
     }
     useEffect(()=>{
