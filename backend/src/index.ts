@@ -7,8 +7,7 @@ import multer from 'multer';
 import { userRouter } from './routes/user';
 import { postRouter } from './routes/posts';
 import path from 'path';
-import { Request,Response } from 'express';
-import { NextFunction } from 'connect';
+import { Request,Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import http from 'http';
 import serverio from './socket'
@@ -33,30 +32,29 @@ app.use(cookieParser(secretKey));
 //   );
 
 // Middleware Setup
-app.use((req, res, next) => {
-    res.setHeader(
-      "Access-Control-Allow-Origin",
-      "https://blog-website-seven-ecru.vercel.app"
-    );
-    res.setHeader(
-      "Access-Control-Allow-Methods",
-      "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-    );
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
-    );
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Allow-Private-Network", "true");
-    //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
-    res.setHeader("Access-Control-Max-Age", 7200);
-})
+app.options('*', cors());  // Include before your other routes
+
 app.use(cors({
-    origin: '*', // This should be the URL of your frontend
+    origin: 'https://blog-website-seven-ecru.vercel.app', // This should be the URL of your frontend
     credentials: true, // To allow cookies to be shared between backend and frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowable methods
     allowedHeaders: ['Content-Type', 'Authorization'],
 })); 
+app.use((req:Request, res:Response, next:NextFunction) => {
+    res.header('Access-Control-Allow-Origin', 'https://blog-website-seven-ecru.vercel.app');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200); // To respond to preflight requests
+    }
+    next();
+})
+app.use((req:Request, res:Response, next:NextFunction) => {
+    console.log('Received request from:', req.headers.origin);
+    next();
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
  // Ensure this is before the routes

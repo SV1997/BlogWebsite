@@ -109,7 +109,7 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return Object.assign(Object.assign({}, post), { profile: author.profileImage, author: author.name, email: author.email });
         });
         console.log(allposts, "allposts", socketId);
-        res.cookie('socketId', socketId, { httpOnly: true, secure: true });
+        res.cookie('socketId', socketId, { httpOnly: true, secure: true, sameSite: 'none' });
         return res.status(200).json(allposts);
     }
     catch (error) {

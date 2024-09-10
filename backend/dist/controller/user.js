@@ -151,7 +151,7 @@ const getUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         // res.cookie('email', email,{httpOnly:true,secure:true});
         return res.status(200).json({ name: response === null || response === void 0 ? void 0 : response.name, email: response === null || response === void 0 ? void 0 : response.email, profileImage: response === null || response === void 0 ? void 0 : response.profileImage, status: response === null || response === void 0 ? void 0 : response.status, requestRecieved: requestRecieved, requestSent: requestSent, followed: followed, following: following });
     }
-    res.cookie('email', email, { httpOnly: true, secure: true });
+    res.cookie('email', email, { httpOnly: true, secure: true, sameSite: 'none' });
     return res.status(200).json(response);
 });
 // :Promise<Response<JSON, Record<string, any>>>

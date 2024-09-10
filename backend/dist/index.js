@@ -56,11 +56,27 @@ app.use((0, cookie_parser_1.default)(secretKey));
 //     sessionMiddleware,
 //   );
 // Middleware Setup
+app.options('*', (0, cors_1.default)()); // Include before your other routes
 app.use((0, cors_1.default)({
-    origin: 'https://blog-website-seven-ecru.vercel.app',
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token", "Set-Cookie", "Cookie", "Origin"],
-    credentials: true // Important to allow cookies to be sent
+    origin: 'https://blog-website-seven-ecru.vercel.app', // This should be the URL of your frontend
+    credentials: true, // To allow cookies to be shared between backend and frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowable methods
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://blog-website-seven-ecru.vercel.app');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200); // To respond to preflight requests
+    }
+    next();
+});
+app.use((req, res, next) => {
+    console.log('Received request from:', req.headers.origin);
+    next();
+});
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 // Ensure this is before the routes
