@@ -119,7 +119,7 @@ const getUserData = async (req: Request, res: Response) => {
         return res.status(200).json({name:response?.name, email:response?.email, profileImage:response?.profileImage, status:response?.status,requestRecieved:requestRecieved,requestSent:requestSent, followed:followed, following:following});
     }
     
-    res.cookie('email', email,{httpOnly:true,secure:true});
+    res.cookie('email', email,{httpOnly:true,secure:true, sameSite:'none'});
     return res.status(200).json(response);
 }
 // :Promise<Response<JSON, Record<string, any>>>
