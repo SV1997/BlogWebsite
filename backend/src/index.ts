@@ -32,7 +32,7 @@ app.use(cookieParser(secretKey));
 //   );
 
 // Middleware Setup
-app.options('*', cors());  // Include before your other routes
+app.options('https://blog-website-seven-ecru.vercel.app', cors());  // Include before your other routes
 
 app.use(cors({
     origin: 'https://blog-website-seven-ecru.vercel.app', // This should be the URL of your frontend

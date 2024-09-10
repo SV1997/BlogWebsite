@@ -56,7 +56,7 @@ app.use((0, cookie_parser_1.default)(secretKey));
 //     sessionMiddleware,
 //   );
 // Middleware Setup
-app.options('*', (0, cors_1.default)()); // Include before your other routes
+app.options('https://blog-website-seven-ecru.vercel.app', (0, cors_1.default)()); // Include before your other routes
 app.use((0, cors_1.default)({
     origin: 'https://blog-website-seven-ecru.vercel.app', // This should be the URL of your frontend
     credentials: true, // To allow cookies to be shared between backend and frontend
