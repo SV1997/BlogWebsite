@@ -134,7 +134,7 @@ function sendContacts(req, res) {
         if (user) {
             const socket = socket_1.default.getIO();
             const userSocket = socket.sockets.sockets.get(socketid);
-            console.log(userSocket, socketid, "socket 121");
+            console.log(userSocket, socket, "socket 121");
             yield (userSocket === null || userSocket === void 0 ? void 0 : userSocket.join(hash));
             console.log(userSocket === null || userSocket === void 0 ? void 0 : userSocket.rooms, "hash 125 sendcontacts");
         }
