@@ -119,7 +119,7 @@ function sendContacts(req, res) {
         const encoder = new TextEncoder();
         const data = encoder.encode(email);
         const hash = "message" + email;
-        console.log(hash, "hash 110");
+        console.log(hash, socketid, "hash 110");
         const user = yield client.user.findUnique({
             where: {
                 email: email
