@@ -361,8 +361,8 @@ try {
     // })
     console.log(req.cookies.email, req.cookies.socketId);
     
-    res.clearCookie('email');
-    res.clearCookie('socketId');
+    res.clearCookie('email',{ path: '/' });
+    res.clearCookie('socketId',{ path: '/' });
     console.log(req.cookies.email, req.cookies.socketId);
 
     res.status(200).json({message:'Logged out successfully'})

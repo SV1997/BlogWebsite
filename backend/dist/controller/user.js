@@ -374,10 +374,10 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         //     console.log(err)
         // })
         console.log(req.cookies.email, req.cookies.socketId);
-        res.clearCookie('email');
-        res.clearCookie('socketId');
+        res.clearCookie('email', { path: '/' });
+        res.clearCookie('socketId', { path: '/' });
         console.log(req.cookies.email, req.cookies.socketId);
-        res.status(200).json({ message: `Logged out successfully ${req.cookies.email, req.cookies.socketId}` });
+        res.status(200).json({ message: 'Logged out successfully' });
     }
     catch (error) {
         console.log(error);
