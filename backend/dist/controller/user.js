@@ -373,8 +373,10 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         // req.session.destroy((err) => {
         //     console.log(err)
         // })
+        console.log(req.cookies.email, req.cookies.socketId);
         res.clearCookie('email');
         res.clearCookie('socketId');
+        console.log(req.cookies.email, req.cookies.socketId);
         res.status(200).json({ message: 'Logged out successfully' });
     }
     catch (error) {

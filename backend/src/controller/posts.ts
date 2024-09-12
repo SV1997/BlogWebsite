@@ -62,6 +62,7 @@ const getPosts= async (req: Request, res: Response) => {
     const email:String|undefined=req.body.email;
     console.log(email,'getposts');
     const socketId=req.body.socketId;
+    console.log(socketId);
     let response: user|null =null;
     try{
     const io = serverio.getIO();

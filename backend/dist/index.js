@@ -109,7 +109,7 @@ app.use('/api/v1/posts', posts_1.postRouter);
 app.use('/api/v1/messages', messages_1.messageRouter);
 const io = socket_1.default.init(server);
 io.on('connection', (socket) => {
-    console.log('Client connected');
+    console.log('Client connected with socket id:', socket.id);
     socket.emit('socketId', socket.id);
 });
 server.listen(process.env.PORT, () => {

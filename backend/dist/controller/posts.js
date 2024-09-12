@@ -56,6 +56,7 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = req.body.email;
     console.log(email, 'getposts');
     const socketId = req.body.socketId;
+    console.log(socketId);
     let response = null;
     try {
         const io = socket_1.default.getIO();
