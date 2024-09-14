@@ -381,6 +381,7 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             secure: true, // Same as when the cookie was set
             sameSite: 'none' });
         console.log(req.cookies.email, req.cookies.socketId);
+        socket_1.default.getIO().disconnectSockets(req.cookies.socketId);
         res.status(200).json({ message: 'Logged out successfully' });
     }
     catch (error) {
