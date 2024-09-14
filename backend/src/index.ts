@@ -91,6 +91,7 @@ io.on('connection', (socket) => {
     socket.emit('socketId', socket.id);
 
 })
+console.log("here i am");
 
 server.listen(process.env.PORT, () => {
     console.log('Server is running on port 3000');
