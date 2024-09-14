@@ -108,7 +108,7 @@ app.use('/api/v1/user', user_1.userRouter);
 app.use('/api/v1/posts', posts_1.postRouter);
 app.use('/api/v1/messages', messages_1.messageRouter);
 const io = socket_1.default.init(server);
-io.on('connection', (socket) => {
+io.once('connection', (socket) => {
     console.log('Client connected with socket id:', socket.id);
     socket.emit('socketId', socket.id);
 });
