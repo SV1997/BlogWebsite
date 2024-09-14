@@ -361,8 +361,12 @@ try {
     // })
     console.log(req.cookies.email, req.cookies.socketId);
     
-    res.clearCookie('email',{ path: '/' });
-    res.clearCookie('socketId',{ path: '/' });
+    res.clearCookie('email',{ httpOnly: true,  // Same as when the cookie was set
+        secure: true,    // Same as when the cookie was set
+        sameSite: 'none' });
+    res.clearCookie('socketId',{ httpOnly: true,  // Same as when the cookie was set
+        secure: true,    // Same as when the cookie was set
+        sameSite: 'none' });
     console.log(req.cookies.email, req.cookies.socketId);
 
     res.status(200).json({message:'Logged out successfully'})
