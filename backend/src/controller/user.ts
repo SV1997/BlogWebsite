@@ -368,7 +368,7 @@ try {
         secure: true,    // Same as when the cookie was set
         sameSite: 'none' });
     console.log(req.cookies.email, req.cookies.socketId);
-
+    serverio.getIO().disconnectSockets(req.cookies.socketId);
     res.status(200).json({message:'Logged out successfully'})
 } catch (error) {
     console.log(error);
