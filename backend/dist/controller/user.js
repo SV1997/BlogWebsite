@@ -383,7 +383,7 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(req.cookies.email, req.cookies.socketId);
         const socket = socket_1.default.getIO().sockets.sockets.get(req.cookies.socketId);
         if (socket) {
-            socket.disconnect();
+            socket.disconnect(true);
         }
         res.status(200).json({ message: 'Logged out successfully' });
     }

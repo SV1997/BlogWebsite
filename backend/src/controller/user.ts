@@ -370,7 +370,7 @@ try {
     console.log(req.cookies.email, req.cookies.socketId);
     const socket = serverio.getIO().sockets.sockets.get(req.cookies.socketId);
     if(socket){
-        socket.disconnect();
+        socket.disconnect(true);
     }
     res.status(200).json({message:'Logged out successfully'})
 } catch (error) {
