@@ -5,7 +5,7 @@ const server={
     init: (server:HTTPServer)=>{
 io = new Server(server,{
   cors:{
-    origin:'https://blog-website-seven-ecru.vercel.app',
+    origin:'https://blog-website-75t9nj6vw-saharsh-vahsishthas-projects.vercel.app/',
     // methods:["GET","POST"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "X-CSRF-Token","Access-Control-Allow-Origin"],
     credentials:true
