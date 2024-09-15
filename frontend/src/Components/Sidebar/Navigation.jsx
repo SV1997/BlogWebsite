@@ -14,7 +14,7 @@ function Navigation() {
   const dispatch= useDispatch()
   const [newrequest, setNewrequest] = useState(0)
   useEffect(()=>{
-    console.log('socket');
+    console.log(socket);
     
     socket.on('notificationUpdate',(message)=>{console.log('connected')
       console.log(message);
