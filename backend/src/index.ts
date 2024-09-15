@@ -32,16 +32,16 @@ app.use(cookieParser(secretKey));
 //   );
 
 // Middleware Setup
-app.options('https://blog-website-c2rt6u6ig-saharsh-vahsishthas-projects.vercel.app', cors());  // Include before your other routes
+app.options('https://blog-website-75t9nj6vw-saharsh-vahsishthas-projects.vercel.app', cors());  // Include before your other routes
 
 app.use(cors({
-    origin: 'https://blog-website-c2rt6u6ig-saharsh-vahsishthas-projects.vercel.app', // This should be the URL of your frontend
+    origin: 'https://blog-website-75t9nj6vw-saharsh-vahsishthas-projects.vercel.app', // This should be the URL of your frontend
     credentials: true, // To allow cookies to be shared between backend and frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowable methods
     allowedHeaders: ['Content-Type', 'Authorization'],
 })); 
 app.use((req:Request, res:Response, next:NextFunction) => {
-    res.header('Access-Control-Allow-Origin', 'https://blog-website-c2rt6u6ig-saharsh-vahsishthas-projects.vercel.app');
+    res.header('Access-Control-Allow-Origin', 'https://blog-website-75t9nj6vw-saharsh-vahsishthas-projects.vercel.app');
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -86,11 +86,11 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/messages', messageRouter);
 const io= serverio.init(server)
-// io.on('connection', (socket) => {
-//     console.log('Client connected with socket id:', socket.id);
-//     socket.emit('socketId', socket.id);
+io.on('connection', (socket) => {
+    console.log('Client connected with socket id:', socket.id);
+    socket.emit('socketId', socket.id);
 
-// })
+})
 console.log("here i am");
 
 server.listen(process.env.PORT, () => {
