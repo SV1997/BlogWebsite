@@ -8,6 +8,7 @@ import { useState } from 'react'
 import Input from './Input'
 import Button from './Button'
 import axios from 'axios'
+import socket from './socket'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {login as authLogin, logout} from '../store/authSlice'
@@ -79,7 +80,7 @@ catch(err){
         sessionStorage.clear()
         const user=sessionStorage.getItem('userInfo')
         console.log(user);
-        
+        socket.disconnect();
         dispatch(logout())
         navigate('/login')
     }} className='text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>Logout</button>
