@@ -61,27 +61,27 @@ try {
 const getPosts= async (req: Request, res: Response) => {
     const email:String|undefined=req.body.email;
     console.log(email,'getposts');
-    const socketId=req.body.socketId;
-    console.log(socketId);
+    // const socketId=req.body.socketId;
+    // console.log(socketId);
     let response: user|null =null;
     try{
     const io = serverio.getIO();
-    const socket=io.sockets.sockets.get(socketId!);
-    if(email){
-        socket?.join((email as string));
-    }
-        // const socketSave=await prisma.socket.create({
-        //     data:{
-        //         socketId: socketId,
-        //         userId: (email as string),
-        //     }
-        // })
+    io.on('connection', (socket) => {
+        console.log('Client connected with socket id:', socket.id);
+        socket.emit('socketId', socket.id);
+        if(email){
+            socket?.join((email as string));
+        }
+        res.cookie('socketId', socket.id, { httpOnly: true, secure: true, sameSite: 'none' });
+    })
+    // const socket=io.sockets.sockets.get(socketId!);
+    
+
         response= await prisma.user.findUnique({
             where:{
                 email:String(email)
             }
         })
-        // res.status(200).json(response);
     }
     catch(error){
         console.log(error);
@@ -115,8 +115,7 @@ const getPosts= async (req: Request, res: Response) => {
             const author: Author = authorMap[post.authorId];
             return { ...post, profile: author.profileImage, author: author.name, email: author.email };
         });
-        console.log(allposts,"allposts",socketId);
-        res.cookie('socketId', socketId, { httpOnly: true, secure: true, sameSite: 'none' });
+        console.log(allposts,"allposts");
         return res.status(200).json(allposts); 
     } catch (error) {
         console.log(error);

@@ -55,27 +55,25 @@ const newPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = req.body.email;
     console.log(email, 'getposts');
-    const socketId = req.body.socketId;
-    console.log(socketId);
+    // const socketId=req.body.socketId;
+    // console.log(socketId);
     let response = null;
     try {
         const io = socket_1.default.getIO();
-        const socket = io.sockets.sockets.get(socketId);
-        if (email) {
-            socket === null || socket === void 0 ? void 0 : socket.join(email);
-        }
-        // const socketSave=await prisma.socket.create({
-        //     data:{
-        //         socketId: socketId,
-        //         userId: (email as string),
-        //     }
-        // })
+        io.on('connection', (socket) => {
+            console.log('Client connected with socket id:', socket.id);
+            socket.emit('socketId', socket.id);
+            if (email) {
+                socket === null || socket === void 0 ? void 0 : socket.join(email);
+            }
+            res.cookie('socketId', socket.id, { httpOnly: true, secure: true, sameSite: 'none' });
+        });
+        // const socket=io.sockets.sockets.get(socketId!);
         response = yield prisma.user.findUnique({
             where: {
                 email: String(email)
             }
         });
-        // res.status(200).json(response);
     }
     catch (error) {
         console.log(error);
@@ -109,8 +107,7 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             const author = authorMap[post.authorId];
             return Object.assign(Object.assign({}, post), { profile: author.profileImage, author: author.name, email: author.email });
         });
-        console.log(allposts, "allposts", socketId);
-        res.cookie('socketId', socketId, { httpOnly: true, secure: true, sameSite: 'none' });
+        console.log(allposts, "allposts");
         return res.status(200).json(allposts);
     }
     catch (error) {

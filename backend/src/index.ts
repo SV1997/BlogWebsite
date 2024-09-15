@@ -86,11 +86,11 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/messages', messageRouter);
 const io= serverio.init(server)
-io.on('connection', (socket) => {
-    console.log('Client connected with socket id:', socket.id);
-    socket.emit('socketId', socket.id);
+// io.on('connection', (socket) => {
+//     console.log('Client connected with socket id:', socket.id);
+//     socket.emit('socketId', socket.id);
 
-})
+// })
 console.log("here i am");
 
 server.listen(process.env.PORT, () => {
