@@ -11,6 +11,7 @@ function App() {
   // const [page, setPage] = useState('')
     const handleWindowChange = async (event) => {
       event.preventDefault();
+      socket.disconnect();
       navigator.sendBeacon('https://shark-app-ahkas.ondigitalocean.app/api/v1/user/windowleave');
       console.log(res, 'unload');
     }
