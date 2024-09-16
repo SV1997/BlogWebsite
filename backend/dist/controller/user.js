@@ -386,6 +386,9 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             socket.emit("disconnect", "disconnected");
             socket.disconnect(true);
         }
+        req.session.destroy((err) => {
+            console.log(err);
+        });
         res.status(200).json({ message: 'Logged out successfully' });
     }
     catch (error) {
