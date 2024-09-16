@@ -21,6 +21,9 @@ function Navigation() {
       setNewrequest(newrequest+1)
       dispatch(setNotification(message))
     },[socket,dispatch])
+    socket.on('disconnect',(message)=>{console.log(message)
+      socket.disconnect()
+    })
  return ()=>socket.disconnect();
   },[])
   const authStatus= useSelector(state=>state.auth.status)
