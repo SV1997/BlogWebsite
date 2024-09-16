@@ -82,6 +82,7 @@ catch(err){
         console.log(user);
         console.log(socket,"before");
         socket.disconnect();
+        socket.off();
         console.log(socket,"socket after");
         
         dispatch(logout())
