@@ -46,7 +46,7 @@ const crypto = __importStar(require("crypto"));
 const secretKey = crypto.randomBytes(16).toString('hex');
 const prisma = new client_1.PrismaClient();
 const setUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b, _c, _d;
+    var _a;
     console.log(req.body, 'create user');
     const image = req.body.profileimage ? req.body.profileimage : '/uploads/nouserimage.png';
     try {
@@ -58,14 +58,6 @@ const setUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 followers: [req.body.email], // Add the followers property
             }
         });
-        req.session.user = {
-            email: response.email,
-            name: response.name,
-            profileImage: (_b = response.profileImage) !== null && _b !== void 0 ? _b : '',
-            mobileNumber: (_c = response.mobileNumber) !== null && _c !== void 0 ? _c : '',
-            status: (_d = response.status) !== null && _d !== void 0 ? _d : ''
-        };
-        req.session.save();
         res.status(200).json({ message: 'User data created successfully' });
     }
     catch (error) {
@@ -384,7 +376,10 @@ const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const socket = socket_1.default.getIO().sockets.sockets.get(req.cookies.socketId);
         if (socket) {
             socket.emit("disconnect", "disconnected");
+            console.log(socket, "before");
+            ;
             socket.disconnect(true);
+            console.log(socket, "after");
         }
         console.log(req.session);
         res.status(200).json({ message: 'Logged out successfully' });

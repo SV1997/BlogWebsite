@@ -23,14 +23,7 @@ const setUserData = async  (req: Request, res: Response) => {
             followers: [req.body.email], // Add the followers property
             }
         });
-        req.session.user= {
-            email: response!.email,
-            name: response!.name,
-            profileImage: response!.profileImage ?? '',
-            mobileNumber: response!.mobileNumber ?? '',
-            status: response!.status ?? ''
-        };
-        req.session.save()
+        
     res.status(200).json({message:'User data created successfully'})
     } catch (error) {
         console.log(error);
@@ -372,7 +365,11 @@ try {
     const socket = serverio.getIO().sockets.sockets.get(req.cookies.socketId);
     if(socket){
         socket.emit("disconnect","disconnected")
+        console.log(socket,"before");
+        ;
         socket.disconnect(true);
+        console.log(socket,"after");
+        
     }
     console.log(req.session);
     
