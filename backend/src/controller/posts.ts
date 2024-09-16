@@ -67,6 +67,9 @@ const getPosts= async (req: Request, res: Response) => {
     try{
     const io = serverio.getIO();
     const socket=io.sockets.sockets.get(socketId!);
+    const allSockets = Array.from(io.sockets.sockets.keys());
+    console.log(allSockets,"all sockets");
+
     if(email){
         socket?.join((email as string));
     }

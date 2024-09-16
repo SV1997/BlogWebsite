@@ -61,6 +61,8 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const io = socket_1.default.getIO();
         const socket = io.sockets.sockets.get(socketId);
+        const allSockets = Array.from(io.sockets.sockets.keys());
+        console.log(allSockets, "all sockets");
         if (email) {
             socket === null || socket === void 0 ? void 0 : socket.join(email);
         }
