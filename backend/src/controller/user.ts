@@ -5,6 +5,7 @@ import { get } from 'http';
 // import client from '../model/client';
 import serverio from '../socket'
 import * as crypto from 'crypto';
+import { disconnect } from 'process';
 // import cookie from 'cookie'
 // import cookieParser from 'cookie-parser';
 // import { log } from 'console';
@@ -370,6 +371,7 @@ try {
     console.log(req.cookies.email, req.cookies.socketId);
     const socket = serverio.getIO().sockets.sockets.get(req.cookies.socketId);
     if(socket){
+        socket.emit("disconnect","disconnected")
         socket.disconnect(true);
     }
     res.status(200).json({message:'Logged out successfully'})
