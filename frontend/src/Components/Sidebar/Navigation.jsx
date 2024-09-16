@@ -7,12 +7,14 @@ import { useRef } from 'react'
 import PostForm from '../PostForm'
 import { MdCancel } from "react-icons/md";
 import { nanoid } from 'nanoid'
-import socket from '../socket'
+import UseSocket from '../useSocket'
 import { setNotification } from '../../store/notificationSlice'
+import useSocket from '../useSocket'
 function Navigation() {
   const notification= useSelector(state=>state.notification.notification)
   const dispatch= useDispatch()
   const [newrequest, setNewrequest] = useState(0)
+  socket=useSocket()
   useEffect(()=>{
     console.log(socket);
     

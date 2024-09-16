@@ -5,10 +5,11 @@ import { useLocation } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import Trending from './Components/Trendings/Trending'
 import ResponsiveButtons from './Components/ResponsiveButtons'
-import socket from './Components/socket'
+import useSocket from './Components/useSocket'
 import axios from 'axios'
 function App() {
   // const [page, setPage] = useState('')
+  const socket=useSocket()
     const handleWindowChange = async (event) => {
       event.preventDefault();
       socket.disconnect();

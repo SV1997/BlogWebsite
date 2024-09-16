@@ -8,7 +8,7 @@ import { useState } from 'react'
 import Input from './Input'
 import Button from './Button'
 import axios from 'axios'
-import socket from './socket'
+import useSocket from './useSocket'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {login as authLogin, logout} from '../store/authSlice'
@@ -21,6 +21,7 @@ function Profile() {
     console.log(userData);
     const{register,handleSubmit}=useForm()
     const dispatch=useDispatch();
+    const socket=useSocket();
     const setUserData=async (data)=>{
       try{
       console.log(data);
