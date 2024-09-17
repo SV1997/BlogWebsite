@@ -15,17 +15,25 @@ function Navigation() {
   const dispatch= useDispatch()
   const [newrequest, setNewrequest] = useState(0)
   const socket=useSocket()
-  useEffect(()=>{
-    console.log(socket);
-    
-    socket.on('notificationUpdate',(message)=>{console.log('connected')
-      console.log(message);
-      setNewrequest(newrequest+1)
-      dispatch(setNotification(message))
-    },[socket,dispatch])
-    
- return ()=>socket.disconnect();
-  },[])
+  useEffect(() => {
+    console.log(socket, "navigation");
+
+    if (socket) {
+      const notificationHandler = (message) => {
+        console.log('connected');
+        console.log(message);
+        setNewRequest(prev => prev + 1);
+        dispatch(setNotification(message));
+      };
+
+      socket.on('notificationUpdate', notificationHandler);
+
+      return () => {
+        socket.off('notificationUpdate', notificationHandler);
+        socket.disconnect();
+      };
+    }
+  }, [socket, dispatch]);
   const authStatus= useSelector(state=>state.auth.status)
   const navigate= useNavigate();
   const [isSidebarOpen, setSidebarOpen] = useState(false)
