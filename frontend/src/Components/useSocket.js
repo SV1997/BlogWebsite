@@ -10,7 +10,8 @@ const useSocket = () => {
     const newSocket = io('https://blogwebsite-1-wxmh.onrender.com');
 
     setSocket(newSocket);
-
+    console.log(socket);
+    
     // Log socket events for debugging
     newSocket.on('connect', () => {
       console.log('Socket connected:', newSocket.id);
