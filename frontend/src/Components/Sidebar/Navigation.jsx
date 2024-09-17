@@ -22,7 +22,7 @@ function Navigation() {
       const notificationHandler = (message) => {
         console.log('connected');
         console.log(message);
-        setNewRequest(prev => prev + 1);
+        setNewrequest(prev => prev + 1);
         dispatch(setNotification(message));
       };
 

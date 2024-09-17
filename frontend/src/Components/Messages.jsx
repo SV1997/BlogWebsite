@@ -19,12 +19,12 @@ function Messages() {
     const { register, handleSubmit,setValue } = useForm();
     useEffect(()=>{
         console.log('socket');
-        
-        socket.on('message',(message)=>{console.log('connected')
+        if(socket)
+{        socket.on('message',(message)=>{console.log('connected')
           console.log(message);
           if(message!=='room joined'){const newCurrentMessage=[...currentMessage,{message:message.message, email:contact.email}]
           setCurrentMessage(newCurrentMessage);}
-        },)
+        },)}
      return ()=>socket.disconnect();
       },[socket])
     useEffect(() => {
