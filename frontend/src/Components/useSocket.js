@@ -7,9 +7,9 @@ const useSocket = () => {
 
   useEffect(() => {
     // Initialize the socket connection
-    const newSocket = io('https://blogwebsite-1-wxmh.onrender.com');
+    const newSockets = io('https://blogwebsite-1-wxmh.onrender.com');
 
-    setSocket(newSocket);
+    setSocket(newSockets);
     console.log(socket);
     
     // Log socket events for debugging
