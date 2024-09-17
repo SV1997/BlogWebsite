@@ -15,7 +15,7 @@ function Home() {
   useEffect(()=>{
     let response;
     async function getPosts(){
-      console.log(socket.id,"home socket display", sessionStorage.getItem("socketId"));
+      console.log(socket,"home socket display", sessionStorage.getItem("socketId"));
       
       response= await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/posts/getposts`,{email:email, socketId:sessionStorage.getItem("socketId")},{
         withCredentials: true,
@@ -26,9 +26,9 @@ function Home() {
       console.log(response.data);
       dispatch(updateFollowPosts(response.data))
     }
-    if(socket.id)
+    if(socket)
     {getPosts()};
-  },[socket.id])
+  },[socket])
   console.log(posts);
   return (
     <>
