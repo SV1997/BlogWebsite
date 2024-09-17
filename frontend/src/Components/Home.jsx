@@ -3,25 +3,28 @@ import  Posts from './Posts/Posts'
 import { useSelector, useDispatch } from 'react-redux'
 import PostForm from './PostForm'
 import axios from 'axios'
+import useSocket from './useSocket'
 import { updateFollowPosts } from '../store/postsSlice'
 function Home() {
   const posts=useSelector(state=>state.posts.followerPosts)
   const page= useSelector(state=>state.page.page)
   const email=useSelector(state=>state.auth.userData.email)
+  const socket=useSocket();
   const dispatch=useDispatch();
   useEffect(()=>{
     let response;
     async function getPosts(){
-      response= await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/posts/getposts`,{email:email, socketId:sessionStorage.getItem('socketId')},{
+      response= await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/posts/getposts`,{email:email, socketId:socket.id},{
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
-      })
+      },[socket])
       console.log(response.data);
       dispatch(updateFollowPosts(response.data))
     }
-    getPosts();
+    if(socket)
+    {getPosts()};
   },[])
   console.log(posts);
   return (
