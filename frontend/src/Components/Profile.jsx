@@ -72,13 +72,13 @@ catch(err){
 
     <button onClick={async ()=>{
         auth.signOut()
+        sessionStorage.clear()
       const res=await axios.post('https://blogwebsite-1-wxmh.onrender.com/api/v1/user/logout',{email:email},{
         withCredentials: true,  // Ensures that cookies, including session cookies, are sent with the request
         headers: {
             'Content-Type': 'application/json'
         }})
         console.log(res.data,"logout");
-        sessionStorage.clear()
         const user=sessionStorage.getItem('userInfo')
         console.log(user);
         console.log(socket,"before");
