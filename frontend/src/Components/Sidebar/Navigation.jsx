@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useContext, useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -7,14 +7,14 @@ import { useRef } from 'react'
 import PostForm from '../PostForm'
 import { MdCancel } from "react-icons/md";
 import { nanoid } from 'nanoid'
-import UseSocket from '../useSocket'
+// import UseSocket from '../useSocket'
 import { setNotification } from '../../store/notificationSlice'
-import useSocket from '../useSocket'
+import SocketContext from '../SocketContext'
 function Navigation() {
   const notification= useSelector(state=>state.notification.notification)
   const dispatch= useDispatch()
   const [newrequest, setNewrequest] = useState(0)
-  const socket=useSocket()
+  const socket=useContext(SocketContext)
   useEffect(() => {
     console.log(socket, "navigation");
 

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { set, useForm } from "react-hook-form";
 import axios from "axios";
 import useSocket from "./useSocket";
+import SocketContext from "./SocketContext";
 function Messages() {
     const location=useLocation();
     const [contact, setContact] = useState({email:location.state?.email, name:location.state?.name});
@@ -13,7 +14,7 @@ function Messages() {
     const [currentMessage, setCurrentMessage] = useState([]);
     const [dynamicMessage, setDynamicMessage] = useState('');
     const [currentContact, setCurrentContact] = useState();
-    const socket=useSocket();
+    const socket=useContext(SocketContext);
     // const [newMessage, setNewMessage] = useState('');
     const email= useSelector(state=>state.auth.userData.email);
     const { register, handleSubmit,setValue } = useForm();

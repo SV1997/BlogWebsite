@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import  Posts from './Posts/Posts'
 import { useSelector, useDispatch } from 'react-redux'
 import PostForm from './PostForm'
 import axios from 'axios'
 import useSocket from './useSocket'
 import { updateFollowPosts } from '../store/postsSlice'
+import SocketContext from './SocketContext'
 function Home() {
   const posts=useSelector(state=>state.posts.followerPosts)
   const page= useSelector(state=>state.page.page)
   const email=useSelector(state=>state.auth.userData.email)
-  const socket=useSocket();
+  const socket=useContext(SocketContext)
   // const [socketId, setSocketId] = useState(socket.id);
   const dispatch=useDispatch();
   useEffect(()=>{

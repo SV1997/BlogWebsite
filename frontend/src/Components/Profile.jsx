@@ -12,6 +12,8 @@ import useSocket from './useSocket'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {login as authLogin, logout} from '../store/authSlice'
+import SocketContext from './SocketContext'
+import { useContext } from 'react'
 const auth= getAuth(app);
 function Profile() {
   const navigate=useNavigate();
@@ -21,7 +23,7 @@ function Profile() {
     console.log(userData);
     const{register,handleSubmit}=useForm()
     const dispatch=useDispatch();
-    const socket=useSocket();
+    const socket=useContext(SocketContext)
     const setUserData=async (data)=>{
       try{
       console.log(data);

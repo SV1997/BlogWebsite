@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom';
 import Trending from './Components/Trendings/Trending';
 import ResponsiveButtons from './Components/ResponsiveButtons';
 import useSocket from './Components/useSocket';
+import SocketContext from './Components/SocketContext';
 import axios from 'axios';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
 
   if (!(isLogin || isSignup)) {
     return (
+      <SocketContext.Provider value={socket}>
       <div className="flex lg:flex-row">
         <div className="flex flex-col w-1/4">
           <Navigation />
@@ -60,6 +62,7 @@ function App() {
           <Trending />
         </div>
       </div>
+      </SocketContext.Provider>
     );
   }
 
