@@ -10,6 +10,8 @@ import axios from 'axios'
 function App() {
   // const [page, setPage] = useState('')
   const socket=useSocket()
+  console.log(socket);
+  
     const handleWindowChange = async (event) => {
       event.preventDefault();
       socket.disconnect();
