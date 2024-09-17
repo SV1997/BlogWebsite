@@ -10,11 +10,12 @@ function Home() {
   const page= useSelector(state=>state.page.page)
   const email=useSelector(state=>state.auth.userData.email)
   const socket=useSocket();
+  // const [socketId, setSocketId] = useState(socket.id);
   const dispatch=useDispatch();
   useEffect(()=>{
     let response;
     async function getPosts(){
-      console.log(socket.id,"home socket display");
+      console.log(socket.id,"home socket display", sessionStorage.getItem("socketId"));
       
       response= await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/posts/getposts`,{email:email, socketId:sessionStorage.getItem("socketId")},{
         withCredentials: true,
@@ -25,9 +26,9 @@ function Home() {
       console.log(response.data);
       dispatch(updateFollowPosts(response.data))
     }
-    if(socket)
+    if(socket.id)
     {getPosts()};
-  },[socket])
+  },[socket.id])
   console.log(posts);
   return (
     <>
