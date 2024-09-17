@@ -25,7 +25,7 @@ function Messages() {
           if(message!=='room joined'){const newCurrentMessage=[...currentMessage,{message:message.message, email:contact.email}]
           setCurrentMessage(newCurrentMessage);}
         },)}
-     return ()=>socket.disconnect();
+     return ()=>{if(socket){socket.disconnect()}};
       },[socket])
     useEffect(() => {
         const fetchContacts = async () => {
