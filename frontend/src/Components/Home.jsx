@@ -14,7 +14,7 @@ function Home() {
   useEffect(()=>{
     let response;
     async function getPosts(){
-      console.log(socket.id);
+      console.log(socket.id,"home socket display");
       
       response= await axios.post(`https://blogwebsite-1-wxmh.onrender.com/api/v1/posts/getposts`,{email:email, socketId:sessionStorage.getItem("socketId")},{
         withCredentials: true,
