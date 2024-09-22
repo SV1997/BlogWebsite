@@ -371,7 +371,7 @@ try {
         console.log(socket,"after");
         
     }
-    console.log(req.session);
+    console.log(req.cookies);
     
     res.status(200).json({message:'Logged out successfully'})
 } catch (error) {
