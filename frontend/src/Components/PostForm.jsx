@@ -9,7 +9,7 @@ import { FaPoll } from "react-icons/fa";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
-import { freshFeed,newUpload } from '../store/postsSlice';
+import { freshFeed,newUpload, updateFollowPosts} from '../store/postsSlice';
 import Emoji from './Post_Functionalities/Emoji';
 import Location from './Post_Functionalities/Location';
 import GIFapi from './Post_Functionalities/GIFapi';
@@ -29,6 +29,7 @@ function PostForm({className}) {
        console.log(res.data);
       dispatch(newUpload({author:name,profileImage:profileImage,...data}));
         dispatch(freshFeed({author:name,profileImage:profileImage,...data}));
+        dispatch(updateFollowPosts({author:name,profileImage:profileImage,...data}));
     }
     console.log(profileImage);
     useEffect(() => {

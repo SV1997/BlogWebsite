@@ -14,7 +14,7 @@ function App() {
   console.log(socket);
 
   const handleWindowChange = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if (socket) {
       socket.disconnect();
     }
