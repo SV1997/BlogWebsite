@@ -49,7 +49,7 @@ const postSlice= createSlice({
             console.log(state.followerPosts);
             
         },
-        logout:(state,action)=>{
+        postsLogout:(state,action)=>{
             state.uploadedPosts=[];
             state.allPosts=[];
             state.followerPosts=[];
@@ -58,5 +58,5 @@ const postSlice= createSlice({
         }
     }
 })
-export const {newUpload,freshFeed,addLikes, updateFollowPosts,logout}=postSlice.actions
+export const {newUpload,freshFeed,addLikes, updateFollowPosts,postsLogout}=postSlice.actions
 export default postSlice.reducer

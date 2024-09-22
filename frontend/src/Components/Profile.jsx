@@ -12,7 +12,7 @@ import useSocket from './useSocket'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {login as authLogin, logout} from '../store/authSlice'
-import {logout as postsLogout} from '../store/postsSlice'
+import {postsLogout} from '../store/postsSlice'
 import SocketContext from './SocketContext'
 import { useContext } from 'react'
 const auth= getAuth(app);
