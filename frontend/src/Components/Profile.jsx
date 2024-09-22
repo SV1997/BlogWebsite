@@ -12,6 +12,7 @@ import useSocket from './useSocket'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {login as authLogin, logout} from '../store/authSlice'
+import {logout as postsLogout} from '../store/postsSlice'
 import SocketContext from './SocketContext'
 import { useContext } from 'react'
 const auth= getAuth(app);
@@ -89,6 +90,7 @@ catch(err){
         console.log(socket,"socket after");
         
         dispatch(logout())
+        dispatch(postsLogout())
         navigate('/login')
     }} className='text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>Logout</button>
     </>

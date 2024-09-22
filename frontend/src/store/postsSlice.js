@@ -53,8 +53,10 @@ const postSlice= createSlice({
             state.uploadedPosts=[];
             state.allPosts=[];
             state.followerPosts=[];
+            console.log("cleared");
+            
         }
     }
 })
-export const {newUpload,freshFeed,addLikes, updateFollowPosts}=postSlice.actions
+export const {newUpload,freshFeed,addLikes, updateFollowPosts,logout}=postSlice.actions
 export default postSlice.reducer
