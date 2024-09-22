@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { logout } from "./authSlice";
 
 const initialState = {
     uploadedPosts:[],
@@ -47,6 +48,11 @@ const postSlice= createSlice({
             })
             console.log(state.followerPosts);
             
+        },
+        logout:(state,action)=>{
+            state.uploadedPosts=[];
+            state.allPosts=[];
+            state.followerPosts=[];
         }
     }
 })
